@@ -1,27 +1,74 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body{
+  background-color: #F8F8FB;
+}
+body.dark{
+  background-color: #141625;
+}
+.container {
+  display: flex;
+  gap: 8px;
+  position: relative;
+  padding-left: 27px;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: League Spartan;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: -0.25;
+  color: #1e2139;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  border-radius: 2px;
+  background-color: #dfe3fa;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.container:hover input ~ .checkmark {
+  border: 1px solid #7c5dfa;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: #7c5dfa;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  left: 6px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
